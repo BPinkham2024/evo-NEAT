@@ -21,9 +21,9 @@ public class XOR implements Environment {
                     float inputs[] = {i, j};
                     float output[] = gene.evaluateNetwork(inputs);
                     int expected = i^j;
-                    //                  System.out.println("Inputs are " + inputs[0] +" " + inputs[1] + " output " + output[0] + " Answer : " + (i ^ j));
-                    //if (output[0] == (i ^ j))
-                    fitness +=  (1 - Math.abs(expected - output[0]));
+                    System.out.println("Inputs are " + inputs[0] +" " + inputs[1] + " output " + output[0] + " Answer : " + (i ^ j));
+                    if (output[0] == (i ^ j))
+                        fitness +=  (1 - Math.abs(expected - output[0]));
                 }
             fitness = fitness * fitness;
 
@@ -33,7 +33,7 @@ public class XOR implements Environment {
 
     }
 
-    public static void main(String arg0[]){
+    public static void main(String[] args){
         XOR xor = new XOR();
 
         Pool pool = new Pool();
@@ -42,7 +42,7 @@ public class XOR implements Environment {
         Genome topGenome = new Genome();
         int generation = 0;
         while(true){
-            //pool.evaluateFitness();
+//            pool.evaluateFitness();
             pool.evaluateFitness(xor);
             topGenome = pool.getTopGenome();
             System.out.println("TopFitness : " + topGenome.getPoints());
@@ -50,7 +50,7 @@ public class XOR implements Environment {
             if(topGenome.getPoints()>15){
                 break;
             }
-//            System.out.println("Population : " + pool.getCurrentPopulation() );
+            System.out.println("Population : " + pool.getCurrentPopulation() );
             System.out.println("Generation : " + generation );
             //           System.out.println("Total number of matches played : "+TicTacToe.matches);
             //           pool.calculateGenomeAdjustedFitness();
